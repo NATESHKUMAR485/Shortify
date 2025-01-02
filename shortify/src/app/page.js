@@ -25,7 +25,7 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <div className="container" style={{ textAlign: 'center' }}>
       <h1>URL Shortener</h1>
       <form onSubmit={handleSubmit}>
         <input
