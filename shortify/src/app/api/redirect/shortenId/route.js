@@ -15,5 +15,8 @@ export async function GET(req, { params }) {
   return new Response(null, {
     status: 301,
     headers: { Location: url.originalUrl },
-  });
+    },
+    console.log('URL not found redirecting to original URL')
+
+);
 }
