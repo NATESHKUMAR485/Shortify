@@ -80,6 +80,7 @@ export async function POST(req) {
 
     const newUrl = new URL({ originalUrl });
     await newUrl.save();
+    console.log(newUrl.shortId);
 
     return new Response(
       JSON.stringify({ shortUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/${newUrl.shortId}` }),
