@@ -10,13 +10,14 @@ export default async function ShortIdPage({ params }) {
   const url = await URL.findOne({ shortId });
 
   if (!url) {
-    notFound(); // Show a 404 page if no matching URL is found
+    notFound(); // Show 404 if shortId is not found
+    return;
   }
 
   // Redirect to the original URL
   if (typeof window !== 'undefined') {
-    window.location.href = url;
+    window.location.href = url.originalUrl;
   }
 
-  return null; // This ensures no content is rendered server-side
+  return null; // Nothing is rendered on the server
 }
