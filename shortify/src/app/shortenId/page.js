@@ -2,6 +2,8 @@ import { notFound } from 'next/navigation';
 import connectDB from '../../lib/mongodb';
 import URL from '../../models/URL';
 
+export const dynamic = 'force-dynamic'; // Prevents static prerendering
+
 export default async function ShortIdPage({ params }) {
   const { shortId } = params;
 
@@ -10,16 +12,9 @@ export default async function ShortIdPage({ params }) {
   const url = await URL.findOne({ shortId });
 
   if (!url) {
-    return notFound(); // Show 404 if shortId is not found
+    notFound(); // Show a 404 page if no URL is found
   }
 
-  // Redirect to the original URL
-//   if (typeof window !== 'undefined') {
-//     window.location.href = url.originalUrl;
-//     console.log('URL not found  to original URL');
-//   }
-
-  // Redirect to the original URL
   return {
     redirect: {
       destination: url.originalUrl,
@@ -27,5 +22,3 @@ export default async function ShortIdPage({ params }) {
     },
   };
 }
-
-
