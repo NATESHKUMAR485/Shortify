@@ -1,0 +1,19 @@
+import connectDB from '../../../../lib/mongodb';
+import URL from '../../../../models/URL';
+
+export async function GET(req, { params }) {
+  const { shortId } = params;
+
+  await connectDB();
+
+  const url = await URL.findOne({ shortId });
+
+  if (!url) {
+    return new Response('URL not found', { status: 404 });
+  }
+
+  return new Response(null, {
+    status: 301,
+    headers: { Location: url.originalUrl },
+  });
+}
