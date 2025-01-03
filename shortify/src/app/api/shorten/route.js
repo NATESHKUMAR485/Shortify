@@ -44,13 +44,13 @@ export async function POST(req) {
     const existingUrl = await URL.findOne({ originalUrl });
 
     if (existingUrl) {
-      return new Response(JSON.stringify({ shortUrl: `https://shortify.nateshkumar.live/${existingUrl.shortId}` }), { status: 200 });
+      return new Response(JSON.stringify({ shortUrl: `https://shortify-nine-bay.vercel.app/${existingUrl.shortId}` }), { status: 200 });
     }
 
     const newUrl = new URL({ originalUrl });
     await newUrl.save();
 
-    return new Response(JSON.stringify({ shortUrl: `https://shortify.nateshkumar.live/${newUrl.shortId}` }), { status: 201 });
+    return new Response(JSON.stringify({ shortUrl: `https://shortify-nine-bay.vercel.app/${newUrl.shortId}` }), { status: 201 });
   } catch (error) {
     return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 });
   }
