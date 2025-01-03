@@ -1,22 +1,22 @@
-// import connectDB from '../../../../lib/mongodb';
-// import URL from '../../../../models/URL';
+import connectDB from '../../../../lib/mongodb';
+import URL from '../../../../models/URL';
 
-// export async function GET(req, { params }) {
-//   const { shortId } = params;
+export async function GET(req, { params }) {
+  const { shortId } = params;
 
-//   await connectDB();
+  await connectDB();
 
-//   const url = await URL.findOne({ shortId });
+  const url = await URL.findOne({ shortId });
 
-//   if (!url) {
-//     return new Response('URL not found', { status: 404 });
-//   }
+  if (!url) {
+    return new Response('URL not found', { status: 404 });
+  }
 
-//   return new Response(null, {
-//     status: 301,
-//     headers: { Location: url.originalUrl },
-//     },
-//     console.log('URL not found redirecting to original URL')
+  return new Response(null, {
+    status: 301,
+    headers: { Location: url.originalUrl },
+    },
+    console.log('URL not found redirecting to original URL')
 
-// );
-// }
+);
+}
